@@ -59,7 +59,7 @@ func ReadInput() (*InputData, error) {
 	}
 
 	var data *InputData
-	err = jsonUnmarshal(file, data)
+	err = jsonUnmarshal(file, &data)
 	if err != nil {
 		log.Println("[IO::ReadInput] parsing data")
 		return nil, err
@@ -90,6 +90,7 @@ func WriteOutput(encrypted []byte) error {
 	err = writeFile(fileName, fileData, 0644)
 	if err != nil {
 		log.Println("[IO::WriteOutput] write file error")
+		return err
 	}
 
 	log.Printf("[IO::WriteOutput] file written: %s", fileName)
