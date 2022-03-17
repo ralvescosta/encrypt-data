@@ -1,5 +1,7 @@
 # Encrypt Data
 
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=ralvescosta_encrypt-data&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=ralvescosta_encrypt-data)
+
 ## Usage
 
 - You need to download the binary with work better for you, chouse one of the binary in the [Releases](https://github.com/ralvescosta/encrypt-data/releases).
