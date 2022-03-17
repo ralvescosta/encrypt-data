@@ -12,7 +12,7 @@ import (
 )
 
 var pemDecode = pem.Decode
-var parsePKCS1PubKey = x509.ParsePKCS1PublicKey
+var parsePKIXPubKey = x509.ParsePKIXPublicKey
 var jsonMarshal = json.Marshal
 var jweEncrypt = jwe.Encrypt
 
@@ -20,7 +20,11 @@ func Encrypt(pubKey string, data map[string]interface{}) ([]byte, error) {
 	log.Printf("[Crypto::Encrypt] encrypting...")
 
 	block, _ := pemDecode([]byte(pubKey))
-	pKey, err := parsePKCS1PubKey(block.Bytes)
+	if block == nil {
+		log.Println("[Crypto::Encrypt] unformatted pub key")
+		return nil, errors.New("unformatted pub key")
+	}
+	pKey, err := parsePKIXPubKey(block.Bytes)
 	if err != nil {
 		log.Println("[Crypto::Encrypt] error whiling parse public key")
 		return nil, err
