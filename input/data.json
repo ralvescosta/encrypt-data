@@ -1,7 +1,7 @@
 {
     "public_key": "key",
     "payload": {
-        "amount": 8900,
+        "amount": 1111,
         "currency": "BRL",
         "customer_id": "6df370e7-8f97-4e7a-a36e-16ad2db6c5fc",
         "payment": {
@@ -9,7 +9,6 @@
             "save_card_data": false,
             "transaction_type": "FULL",
             "number_installments": 1,
-            "dynamic_mcc": "5311",
             "card": {
                 "number": "fake_card_number",
                 "expiration_month": "09",
