@@ -21,6 +21,18 @@ func Test_Encrypt(t *testing.T) {
 		assert.Equal(t, []byte("encrypted"), result)
 	})
 
+	t.Run("should return error if pemDecoded return nil", func(t *testing.T) {
+		mock(nil, nil, nil)
+		pemDecode = func(data []byte) (p *pem.Block, rest []byte) {
+			return nil, []byte(nil)
+		}
+
+		result, err := Encrypt("pubKey", make(map[string]interface{}))
+
+		assert.Error(t, err)
+		assert.Nil(t, result)
+	})
+
 	t.Run("should return error if some error occur in parsePKCS1PubKey", func(t *testing.T) {
 		mock(errors.New("some error"), nil, nil)
 
@@ -49,12 +61,12 @@ func Test_Encrypt(t *testing.T) {
 	})
 }
 
-func mock(parsePKCS1PubKeyError, jsonMarshalError, jweEncryptError error) {
+func mock(parsePKIXPubKeyError, jsonMarshalError, jweEncryptError error) {
 	pemDecode = func(data []byte) (p *pem.Block, rest []byte) {
 		return &pem.Block{}, []byte(nil)
 	}
-	parsePKCS1PubKey = func(der []byte) (*rsa.PublicKey, error) {
-		return &rsa.PublicKey{}, parsePKCS1PubKeyError
+	parsePKIXPubKey = func(derBytes []byte) (pub any, err error) {
+		return &rsa.PublicKey{}, parsePKIXPubKeyError
 	}
 	jsonMarshal = func(v any) ([]byte, error) {
 		return []byte(""), jsonMarshalError
