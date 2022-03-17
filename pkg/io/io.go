@@ -13,13 +13,19 @@ var inputFolder = "input"
 var inputFileName = "data.json"
 var outputFolder = "output"
 
+var osGetwd = os.Getwd
+var readFile = ioutil.ReadFile
+var writeFile = ioutil.WriteFile
+var jsonUnmarshal = json.Unmarshal
+var jsonMarshalIndent = json.MarshalIndent
+
 type InputData struct {
 	PublicKey string `json:"public_key"`
 	Payload   map[string]interface{}
 }
 
 func getInputFile() (string, error) {
-	p, err := os.Getwd()
+	p, err := osGetwd()
 	if err != nil {
 		log.Println("[IO::getInputFile] get path error")
 		return "", err
@@ -29,7 +35,7 @@ func getInputFile() (string, error) {
 }
 
 func getOutputFile() (string, error) {
-	p, err := os.Getwd()
+	p, err := osGetwd()
 	if err != nil {
 		log.Println("[IO::getOutputFile] get path error")
 		return "", err
@@ -46,14 +52,14 @@ func ReadInput() (*InputData, error) {
 	}
 	log.Printf("[IO::ReadInput] reading file %s\n", path)
 
-	file, err := ioutil.ReadFile(path)
+	file, err := readFile(path)
 	if err != nil {
 		log.Println("[IO::ReadInput] open file")
 		return nil, err
 	}
 
 	var data *InputData
-	err = json.Unmarshal(file, &data)
+	err = jsonUnmarshal(file, data)
 	if err != nil {
 		log.Println("[IO::ReadInput] parsing data")
 		return nil, err
@@ -64,7 +70,7 @@ func ReadInput() (*InputData, error) {
 }
 
 type OutputData struct {
-	EncryptedData []byte `json:"encrypted_data"`
+	EncryptedData string `json:"encrypted_data"`
 }
 
 func WriteOutput(encrypted []byte) error {
@@ -75,12 +81,13 @@ func WriteOutput(encrypted []byte) error {
 		return err
 	}
 
-	fileData, err := json.MarshalIndent(OutputData{encrypted}, "", " ")
+	fileData, err := jsonMarshalIndent(OutputData{string(encrypted)}, "", " ")
 	if err != nil {
 		log.Println("[IO::WriteOutput] parsing error")
+		return err
 	}
 
-	err = os.WriteFile(fileName, fileData, 0644)
+	err = writeFile(fileName, fileData, 0644)
 	if err != nil {
 		log.Println("[IO::WriteOutput] write file error")
 	}
