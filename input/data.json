@@ -1,0 +1,32 @@
+{
+    "public_key": "key",
+    "payload": {
+        "amount": 8900,
+        "currency": "BRL",
+        "customer_id": "6df370e7-8f97-4e7a-a36e-16ad2db6c5fc",
+        "payment": {
+            "payment_method": "CREDIT_AUTHORIZATION",
+            "save_card_data": false,
+            "transaction_type": "FULL",
+            "number_installments": 1,
+            "dynamic_mcc": "5311",
+            "card": {
+                "number": "fake_card_number",
+                "expiration_month": "09",
+                "expiration_year": "99",
+                "cardholder_name": "Fake Card Holder Name",
+                "security_code": "517",
+                "brand": "VISA"
+            }
+        },
+        "sub_merchant": {
+            "identification_code": "9058344",
+            "document_type": "CNPJ",
+            "document_number": "20551625000159",
+            "address": "Torre Negra, 44",
+            "city": "Cidade",
+            "state": "RS",
+            "postal_code": "90520000"
+        }
+    } 
+}
