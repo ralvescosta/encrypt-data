@@ -1,8 +1,0 @@
-mode: atomic
-encrypt-data/pkg/crypto/crypto.go:19.74,24.16 4 4
-encrypt-data/pkg/crypto/crypto.go:29.2,30.16 2 3
-encrypt-data/pkg/crypto/crypto.go:35.2,36.16 2 2
-encrypt-data/pkg/crypto/crypto.go:41.2,43.23 2 1
-encrypt-data/pkg/crypto/crypto.go:24.16,27.3 2 1
-encrypt-data/pkg/crypto/crypto.go:30.16,33.3 2 1
-encrypt-data/pkg/crypto/crypto.go:36.16,39.3 2 1
