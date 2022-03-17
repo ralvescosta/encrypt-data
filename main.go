@@ -17,5 +17,7 @@ func main() {
 		log.Fatal(err)
 	}
 
-	log.Fatal(io.WriteOutput(encrypted))
+	if err := io.WriteOutput(encrypted); err != nil {
+		log.Fatal(err)
+	}
 }
