@@ -28,6 +28,11 @@ jobs:
       - name: Go Vet
         run: go vet -json ./... 2> govet-report.out
 
+      - name: Go Lint
+        run: |
+          go install golang.org/x/lint/golint
+          golint ./... > golint-report.out
+
       - name: SonarCloud Scan
         uses: sonarsource/sonarcloud-github-action@master
         env:
