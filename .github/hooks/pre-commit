@@ -1,0 +1,7 @@
+#!/bin/bash
+
+chmod +x .git/hooks/pre-commit
+
+export PATH="$PATH:/home/rafael/Desktop/Rafael/github.com/crypto-maroto"
+
+sonar-scanner -Dsonar.projectKey=ralvescosta_encrypt-data -Dsonar.sources=. -Dsonar.host.url=https://sonarcloud.io -Dsonar.qualitygate.wait=true
