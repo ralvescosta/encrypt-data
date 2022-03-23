@@ -1,5 +1,5 @@
 {
-    "public_key": "key",
+    "public_key": "-----BEGIN PUBLIC KEY-----\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAwGJUA51W9aFohpzh9caH\nGNDdjAyiCGn+Um0XYIw568k40l9OZoSEbKO/iQnQDQgPz6riTywaIhxoy/E7OmWS\n5Cb8HfadgjlQ3OVBmmC1pw7DuAW3nqGN/ABWO781aWjkHA4buPA3lRHfJMxYG8ib\nCKLWIniL0M4wXaasGJ6k4jeLjFft4JyhBKfjvKcdagtkw2u2hvWVfuYjsrs2INmT\nabgz0IRzWZu+0N/OnM3voz1pUPLI8vc4zyMMDFpy3Oh4kb+YjKzBm8yiko3dgkQW\n4PxLpnf6ExWWRRNpejYCZ9k0+4WvclUXsEV53HLkXouUw712b+HbqhVn2DfQWxRb\nCwIDAQAB\n-----END PUBLIC KEY-----",
     "payload": {
         "amount": 1111,
         "currency": "BRL",
