@@ -27,7 +27,7 @@ type InputData struct {
 func getInputFile() (string, error) {
 	p, err := osGetwd()
 	if err != nil {
-		log.Println("[IO::getInputFile] get path error")
+		log.Println("[IO::getInputFile] [Err] get path error")
 		return "", err
 	}
 
@@ -37,11 +37,11 @@ func getInputFile() (string, error) {
 func getOutputFile() (string, error) {
 	p, err := osGetwd()
 	if err != nil {
-		log.Println("[IO::getOutputFile] get path error")
+		log.Println("[IO::getOutputFile] [Err] get path error")
 		return "", err
 	}
 
-	return fmt.Sprintf("%s%s%s%s%s", p, string(os.PathSeparator), "output", string(os.PathSeparator), time.Now().Format(time.RFC3339)+".json"), nil
+	return fmt.Sprintf("%s%s%s%s%v%s", p, string(os.PathSeparator), "output", string(os.PathSeparator), time.Now().Unix(), ".json"), nil
 }
 
 func ReadInput() (*InputData, error) {
@@ -83,16 +83,16 @@ func WriteOutput(encrypted []byte) error {
 
 	fileData, err := jsonMarshalIndent(OutputData{string(encrypted)}, "", " ")
 	if err != nil {
-		log.Println("[IO::WriteOutput] parsing error")
+		log.Println("[IO::WriteOutput] [Err] parsing error")
 		return err
 	}
 
 	err = writeFile(fileName, fileData, 0644)
 	if err != nil {
-		log.Println("[IO::WriteOutput] write file error")
+		log.Println("[IO::WriteOutput] [Err] write file error")
 		return err
 	}
 
-	log.Printf("[IO::WriteOutput] file written: %s", fileName)
+	log.Printf("[IO::WriteOutput] [Err] file written: %s", fileName)
 	return err
 }

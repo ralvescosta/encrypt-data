@@ -21,24 +21,24 @@ func Encrypt(pubKey string, data map[string]interface{}) ([]byte, error) {
 
 	block, _ := pemDecode([]byte(pubKey))
 	if block == nil {
-		log.Println("[Crypto::Encrypt] unformatted pub key")
+		log.Println("[Crypto::Encrypt] [Err] unformatted pub key")
 		return nil, errors.New("unformatted pub key")
 	}
 	pKey, err := parsePKIXPubKey(block.Bytes)
 	if err != nil {
-		log.Println("[Crypto::Encrypt] error whiling parse public key")
+		log.Println("[Crypto::Encrypt] [Err] error whiling parse public key")
 		return nil, err
 	}
 
 	dataToByte, err := jsonMarshal(data)
 	if err != nil {
-		log.Printf("[Crypto::Encrypt] Marshal Error: %s\n", err.Error())
+		log.Printf("[Crypto::Encrypt] [Err] Marshal Error: %s\n", err.Error())
 		return nil, errors.New("JSON parse error")
 	}
 
 	encrypted, err := jweEncrypt(dataToByte, jwa.RSA_OAEP_256, pKey, jwa.A256CBC_HS512, jwa.NoCompress)
 	if err != nil {
-		log.Printf("[Crypto::Encrypt] JWE Encrypt Error: %s\n", err.Error())
+		log.Printf("[Crypto::Encrypt] [Err] JWE Encrypt Error: %s\n", err.Error())
 		return nil, errors.New("encrypt error")
 	}
 
